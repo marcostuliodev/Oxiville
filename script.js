@@ -64,16 +64,20 @@ function handleWhatsappFormSubmit(e){
   const fullMessage = `Olá, meu nome é ${nome}.\n\nEmpresa: ${empresa || '-'}\n\nTelefone: ${telefone}\n\nGostaria de solicitar orçamento para:\n\nProduto: ${produto}\n\nQuantidade: ${quantidade || '-'}\n\nObservações: ${observacoes || '-'}\n\nAguardo retorno.`;
   // abrir wa.me
   window.open(buildWhatsAppUrl(WHATSAPP_NUMBER, fullMessage), '_blank');
+  closeWhatsappModal();
 }
 
 // Open modal
 function openWhatsappModal(){
   const modal = document.getElementById('whatsapp-modal');
   modal.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
 }
+
 function closeWhatsappModal(){
   const modal = document.getElementById('whatsapp-modal');
   modal.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
 }
 
 // Initialize events
@@ -87,8 +91,11 @@ function init(){
   const floatBtn = document.getElementById('whatsapp-float');
   floatBtn && floatBtn.addEventListener('click', openWhatsappModal);
 
-  const modalClose = document.querySelector('.modal-close');
+  const modalClose = document.getElementById('modal-close');
   modalClose && modalClose.addEventListener('click', closeWhatsappModal);
+
+  const modalOverlay = document.getElementById('modal-overlay');
+  modalOverlay && modalOverlay.addEventListener('click', closeWhatsappModal);
 
   const btnWhatsapp = document.getElementById('btn-whatsapp');
   btnWhatsapp && btnWhatsapp.addEventListener('click', (e)=>{e.preventDefault(); openWhatsappModal();});
@@ -98,7 +105,7 @@ function init(){
     btn.addEventListener('click', ()=>{
       const produto = btn.getAttribute('data-product');
       const select = document.getElementById('produto');
-      if(select){ select.value = produto; select.focus(); }
+      if(select){ select.value = produto; }
       document.getElementById('contato')?.scrollIntoView({behavior:'smooth'});
     });
   });
@@ -112,6 +119,16 @@ function init(){
 
   // otimização: prefetch wa.me (opcional em ambientes suportados)
   const link = document.createElement('link'); link.rel='preconnect'; link.href='https://wa.me'; document.head.appendChild(link);
+
+  // Fechar modal com ESC
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape'){
+      const modal = document.getElementById('whatsapp-modal');
+      if(modal && modal.getAttribute('aria-hidden') === 'false'){
+        closeWhatsappModal();
+      }
+    }
+  });
 }
 
 document.addEventListener('DOMContentLoaded', init);
