@@ -28,8 +28,8 @@
   --radius-md: 12px;
   --radius-lg: 16px;
   
-  --transition-fast: 200ms ease;
   --transition-base: 300ms ease;
+  --transition-fast: 200ms ease;
   --transition-slow: 500ms ease;
 }
 
@@ -164,7 +164,7 @@ a:hover {
 }
 
 .top-nav a {
-  color: var(--primary);
+  /* color: var(--primary); */
   font-size: 15px;
   font-weight: 500;
   transition: color var(--transition-fast);
@@ -199,7 +199,8 @@ a:hover {
 }
 
 .nav-cta:hover {
-  background: var(--primary-dark);
+  background: var(--text-muted);
+
 }
 
 /* ===== HERO ===== */
@@ -711,22 +712,25 @@ a:hover {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: #25D366;
-  color: white;
-  border: none;
+  background: #efefef;
+  /*color: white;
+  */border: solid 2px green;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: var(--shadow-lg);
-  transition: all var(--transition-base);
+  transition: all var(--transition-slow);
   z-index: 99;
-  animation: slideUp 400ms ease-out 200ms both;
+  -webkit-transition: all var(--transition-slow);
+  -moz-transition: all var(--transition-slow);
+  -ms-transition: all var(--transition-slow);
+  -o-transition: all var(--transition-slow);
 }
 
 .whatsapp-float:hover {
-  transform: scale(1.12);
-  box-shadow: var(--shadow-xl);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.18);
 }
 
 .whatsapp-float svg {
@@ -736,16 +740,17 @@ a:hover {
 
 /* ===== FOOTER ===== */
 .site-footer {
-  background: #ffffff;
+  background: #efefef;
   color: var(--text-primary);
   border-top: 3px solid var(--primary);
   padding: 48px 0 20px;
   margin-top: 60px;
+  display: flex;
+  align-items: center;
 }
 
 .footer-content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  /* grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); */
   gap: 32px;
   margin-bottom: 32px;
 }

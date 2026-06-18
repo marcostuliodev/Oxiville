@@ -1,5 +1,5 @@
 // Configurável: altere apenas esta variável para definir o número do WhatsApp (formato internacional, sem sinais)
-const WHATSAPP_NUMBER = '5511999999999'; // e.g. 5511999999999
+const WHATSAPP_NUMBER = '553134170535'; // e.g. 553134170535
 const COMPANY_NAME = 'Oxiville';
 
 // Utility: constrói link wa.me com mensagem encodificada
